@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Horses Team | Star Stable Online Club</title>
+    <meta name="description" content="Willkommen auf der offiziellen Webseite des Star Stable Online Clubs 'Dragon Horses Team'. Drachen lassen sich nicht zähmen. Lerne uns kennen und bewirb dich!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for beautiful icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Canvas for Floating Fire Sparks -->
+    <canvas id="fire-particles"></canvas>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <span class="logo-icon"><i class="fa-solid fa-dragon"></i></span>
+                <span class="logo-text">Dragon Horses <span class="accent-text">Team</span></span>
+            </a>
+            
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#hero" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">Über uns</a></li>
+                    <li><a href="#club-style" class="nav-link">Pferd & Uniform</a></li>
+                    <li><a href="#calendar" class="nav-link">Wochenplan</a></li>
+                    <li><a href="#team" class="nav-link">Unser Team</a></li>
+                    <li><a href="#join" class="btn btn-primary btn-sm">Jetzt bewerben</a></li>
+                </ul>
+            </nav>
+            
+            <button class="nav-toggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-bg" style="background-image: linear-gradient(to bottom, rgba(11, 11, 13, 0.4), rgba(11, 11, 13, 0.95)), url('assets/TitelBild.png');"></div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="hero-subtitle"><i class="fa-solid fa-fire-flame-curved icon-fire"></i> Star Stable Online Club</span>
+                    <h1 class="hero-title">Dragon Horses<br><span class="accent-glow">Team</span></h1>
+                    <p class="hero-tagline">Drachen lassen sich nicht zähmen.</p>
+                    <p class="hero-description">Wir sind mehr als nur ein Club. Wir sind eine Familie auf stolzen Hufen, vereint durch die Magie Jorviks und die Stärke des Drachen. Bist du bereit, mit uns zu fliegen?</p>
+                    <div class="hero-actions">
+                        <a href="#join" class="btn btn-primary btn-lg">Tritt uns bei <i class="fa-solid fa-chevron-right btn-icon"></i></a>
+                        <a href="#about" class="btn btn-secondary btn-lg">Mehr erfahren</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-scroll-down">
+                <a href="#about" aria-label="Nach unten scrollen">
+                    <span class="mouse-icon">
+                        <span class="mouse-wheel"></span>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Wer wir sind</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Erfahre mehr über unsere Gemeinschaft, unsere Philosophie und unsere Heimat.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-info-card glass-card">
+                        <div class="info-card-header">
+                            <i class="fa-solid fa-shield-halved info-icon"></i>
+                            <h3>Unsere Philosophie</h3>
+                        </div>
+                        <p>Das Dragon Horses Team wurde mit einem einfachen Ziel gegründet: Einen Ort zu erschaffen, an dem sich jeder wohlfühlt. Bei uns stehen Zusammenhalt, Loyalität und vor allem der Spaß am gemeinsamen Spiel an erster Stelle. Kein Leistungsdruck, kein Drama – nur wir, unsere Pferde und jede Menge Abenteuer.</p>
+                    </div>
+
+                    <div class="about-facts-card glass-card">
+                        <div class="info-card-header">
+                            <i class="fa-solid fa-circle-info info-icon"></i>
+                            <h3>Club Fakten</h3>
+                        </div>
+                        <ul class="facts-list">
+                            <li>
+                                <span class="fact-label"><i class="fa-solid fa-server"></i> Server:</span>
+                                <span class="fact-value">Cape Coconut</span>
+                            </li>
+                            <li>
+                                <span class="fact-label"><i class="fa-solid fa-calendar-days"></i> Gegründet:</span>
+                                <span class="fact-value">17.05.2026</span>
+                            </li>
+                            <li>
+                                <span class="fact-label"><i class="fa-solid fa-users"></i> Mitglieder:</span>
+                                <span class="fact-value">Wir wachsen</span>
+                            </li>
+                            <li>
+                                <span class="fact-label"><i class="fa-solid fa-hand-fist"></i> Club-Motto:</span>
+                                <span class="fact-value">„Drachen lassen sich nicht zähmen“</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="about-activities-card glass-card">
+                        <div class="info-card-header">
+                            <i class="fa-solid fa-wand-magic-sparkles info-icon"></i>
+                            <h3>Was wir tun</h3>
+                        </div>
+                        <div class="activities-grid">
+                            <div class="activity-item">
+                                <span class="activity-icon"><i class="fa-solid fa-chess"></i></span>
+                                <h4>Dressur</h4>
+                                <p>Präzision & Teamarbeit bei unseren wöchentlichen Quadrillen.</p>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-icon"><i class="fa-solid fa-compass"></i></span>
+                                <h4>Ausritte</h4>
+                                <p>Entspannte Runden durch die wunderschönen Ecken Jorviks.</p>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-icon"><i class="fa-solid fa-trophy"></i></span>
+                                <h4>Clubspiele</h4>
+                                <p>Spannende Turniere, Schnitzeljagden und Versteckspiele.</p>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-icon"><i class="fa-solid fa-hat-cowboy"></i></span>
+                                <h4>Western</h4>
+                                <p>Lässiges Reiten, Trail-Training & Reining im Westernsattel.</p>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-icon"><i class="fa-solid fa-horse-head"></i></span>
+                                <h4>Springen</h4>
+                                <p>Präzision und Rhythmus bei anspruchsvollen Parcours-Ritten.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Club Style Section -->
+        <section id="club-style" class="club-style-section section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Unser Stolz</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Das offizielle Club-Pferd und der feurige Dresscode des Dragon Horses Teams.</p>
+                </div>
+
+                <div class="style-grid">
+                    <!-- Left: Club Horse Card -->
+                    <div class="style-card horse-card glass-card">
+                        <div class="style-card-img-container">
+                            <img src="assets/club_horse_star.png" alt="Offizielles Club-Pferd" class="style-card-img">
+                            <div class="style-badge">Club-Pferd</div>
+                        </div>
+                        <div class="style-card-content">
+                            <div class="tabs-header">
+                                <button class="tab-btn active" data-tab="sr-horse" data-image="assets/club_horse_star.png"><i class="fa-solid fa-star"></i> Star Rider</button>
+                                <button class="tab-btn" data-tab="nsr-horse" data-image="assets/club_horse.png"><i class="fa-solid fa-horse"></i> Kein Star Rider</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="sr-horse-tab">
+                                <h3>Das Drachenpferd</h3>
+                                <p class="tab-desc">Das magische Symbol des Dragon Horses Teams für alle Star Rider.</p>
+                                <p>Für unsere erfahrenen Reiterinnen, die Jorvik in seiner vollen Pracht erkunden können. Das offizielle Drachenpferd verkörpert das feurige und ungezähmte Wesen unseres Clubs. Mit seiner majestätischen Ausstrahlung zieht es alle Blicke auf sich.</p>
+                                <div class="horse-specs">
+                                    <div class="spec-item">
+                                        <span class="spec-label">Farbe</span>
+                                        <span class="spec-val">Schwarz / Magisch</span>
+                                    </div>
+                                    <div class="spec-item">
+                                        <span class="spec-label">Preis</span>
+                                        <span class="spec-val">950 SC</span>
+                                    </div>
+                                    <div class="spec-item">
+                                        <span class="spec-label">Ort</span>
+                                        <span class="spec-val">Valedale / Globaler Shop</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-content" id="nsr-horse-tab">
+                                <h3>Der majestätische Friese</h3>
+                                <p class="tab-desc">Unsere stolze Alternative für alle Reiterinnen ohne Star-Rider-Status.</p>
+                                <p>Unsere Drachen fliegen auf stolzen Rappen. Der Friese der 3. Generation verkörpert perfekt unsere Stärke, Eleganz und den mystischen Drachencharakter. Mit seiner wehenden Mähne und seinem stolzen Gang hinterlässt unser Team bei jedem Auftritt einen bleibenden Eindruck.</p>
+                                <div class="horse-specs">
+                                    <div class="spec-item">
+                                        <span class="spec-label">Farbe</span>
+                                        <span class="spec-val">Rappe (schwarz)</span>
+                                    </div>
+                                    <div class="spec-item">
+                                        <span class="spec-label">Preis</span>
+                                        <span class="spec-val">950 SC</span>
+                                    </div>
+                                    <div class="spec-item">
+                                        <span class="spec-label">Ort</span>
+                                        <span class="spec-val">Jarlaheim / Jorvik-Stall</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Club Uniform Card with Tabs -->
+                    <div class="style-card uniform-card glass-card">
+                        <div class="style-card-img-container">
+                            <img src="assets/TitelBild.png" alt="Offizielle Club-Uniform" class="style-card-img">
+                            <div class="style-badge">Club-Uniform</div>
+                        </div>
+                        <div class="style-card-content">
+                            <div class="tabs-header">
+                                <button class="tab-btn active" data-tab="rider"><i class="fa-solid fa-person-riding"></i> Reiter</button>
+                                <button class="tab-btn" data-tab="horse"><i class="fa-solid fa-horse"></i> Pferdetack</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="rider-tab">
+                                <h3>Der Dresscode des Reiters</h3>
+                                <p class="tab-desc">Elegant, praktisch und in unseren Clubfarben: Tiefschwarz, edles Crimson-Rot und schimmerndes Gold.</p>
+                                <ul class="uniform-list">
+                                    <li>
+                                        <span class="item-name"><i class="fa-solid fa-shirt"></i> Reitjacke:</span>
+                                        <span class="item-desc">Dressurjacket des Admirals</span>
+                                    </li>
+                                    <li>
+                                        <span class="item-name"><i class="fa-solid fa-socks"></i> Reithose:</span>
+                                        <span class="item-desc">Schwarze Hose</span>
+                                    </li>
+                                    <li>
+                                        <span class="item-name"><i class="fa-solid fa-shoe-prints"></i> Stiefel:</span>
+                                        <span class="item-desc">Schwarze Stiefel</span>
+                                    </li>
+                                    <li>
+                                        <span class="item-name"><i class="fa-solid fa-hat-cowboy"></i> Kopfbedeckung:</span>
+                                        <span class="item-desc">Schwarzer Helm</span>
+                                    </li>
+                                    <li>
+                                        <span class="item-name"><i class="fa-solid fa-hands"></i> Handschuhe:</span>
+                                        <span class="item-desc">Schwarze Handschuhe</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="tab-content" id="horse-tab">
+                                <h3>Die Rüstung des Pferdes</h3>
+                                <p class="tab-desc">Ausgestattet, um wie ein feuriger Drache durch jorviksche Winde zu reiten.</p>
+                                <ul class="uniform-list">
+                                    <li>
+                                        <span class="item-name"><i class="fa-solid fa-sheet-plastic"></i> Satteldecke:</span>
+                                        <span class="item-desc">Franziskas schwarze Satteldecke (im Globi-Shop)</span>
+                                    </li>
+                                    <li>
+                                        <span class="item-name"><i class="fa-solid fa-compact-disc"></i> Sattel:</span>
+                                        <span class="item-desc">Dressursattel „Kyrias Reiterin“ (im Globi-Shop)</span>
+                                    </li>
+                                    <li>
+                                        <span class="item-name"><i class="fa-solid fa-circle"></i> Zaumzeug:</span>
+                                        <span class="item-desc">Schwarze Trense</span>
+                                    </li>
+                                    <li>
+                                        <span class="item-name"><i class="fa-solid fa-ribbon"></i> Gamaschen:</span>
+                                        <span class="item-desc">Schwarze Gamaschen</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weekly Schedule Section -->
+        <section id="calendar" class="calendar-section section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Unser Wochenplan</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Hier siehst du, wann wir aktiv sind. Gäste sind bei unseren offenen Events immer willkommen!</p>
+                </div>
+
+                <!-- Calendar Filters -->
+                <div class="calendar-filters">
+                    <button class="filter-btn active" data-filter="all">Alle Events</button>
+                    <button class="filter-btn" data-filter="training">Trainings</button>
+                    <button class="filter-btn" data-filter="fun">Club-Spiele</button>
+                    <button class="filter-btn" data-filter="social">Gemeinschaft</button>
+                </div>
+
+                <!-- Weekly Grid -->
+                <div class="calendar-grid">
+                    <!-- Montag -->
+                    <div class="calendar-day-card glass-card" data-category="fun">
+                        <div class="day-header">
+                            <span class="day-name">Montag</span>
+                            <span class="day-status status-free">Frei</span>
+                        </div>
+                        <div class="day-body">
+                            <p class="event-time"><i class="fa-regular fa-clock"></i> -</p>
+                            <h4 class="event-title">Entspannung für die Hufe</h4>
+                            <p class="event-desc">Heute gibt es keine festen Termine. Perfekt für Quests, Stallarbeit oder Leveln.</p>
+                        </div>
+                    </div>
+
+                    <!-- Dienstag -->
+                    <div class="calendar-day-card glass-card" data-category="training">
+                        <div class="day-header">
+                            <span class="day-name">Dienstag</span>
+                            <span class="day-status status-active">Event</span>
+                        </div>
+                        <div class="day-body">
+                            <p class="event-time"><i class="fa-regular fa-clock"></i> 19:00 - 20:00 Uhr</p>
+                            <h4 class="event-title">Kader-Dressur</h4>
+                            <p class="event-desc">Wir verfeinern unsere Quadrille in der Reithalle. Pflichttermin für Dressur-Kader.</p>
+                            <span class="event-badge badge-training">Dressur-Training</span>
+                        </div>
+                    </div>
+
+                    <!-- Mittwoch -->
+                    <div class="calendar-day-card glass-card" data-category="social">
+                        <div class="day-header">
+                            <span class="day-name">Mittwoch</span>
+                            <span class="day-status status-active">Event</span>
+                        </div>
+                        <div class="day-body">
+                            <p class="event-time"><i class="fa-regular fa-clock"></i> 18:30 - 20:00 Uhr</p>
+                            <h4 class="event-title">Update & Plauderei</h4>
+                            <p class="event-desc">Wir erkunden gemeinsam das wöchentliche SSO-Update und quatschen im Discord.</p>
+                            <span class="event-badge badge-social">Gemeinschaft</span>
+                        </div>
+                    </div>
+
+                    <!-- Donnerstag -->
+                    <div class="calendar-day-card glass-card" data-category="fun">
+                        <div class="day-header">
+                            <span class="day-name">Donnerstag</span>
+                            <span class="day-status status-active">Event</span>
+                        </div>
+                        <div class="day-body">
+                            <p class="event-time"><i class="fa-regular fa-clock"></i> 19:30 - 21:00 Uhr</p>
+                            <h4 class="event-title">Rallye durch Jorvik</h4>
+                            <p class="event-desc">Ein spannendes Orientierungsreiten quer durch Jorvik. Schnelligkeit und Köpfchen zählen!</p>
+                            <span class="event-badge badge-fun">Clubspiel</span>
+                        </div>
+                    </div>
+
+                    <!-- Freitag -->
+                    <div class="calendar-day-card glass-card" data-category="social">
+                        <div class="day-header">
+                            <span class="day-name">Freitag</span>
+                            <span class="day-status status-active">Event</span>
+                        </div>
+                        <div class="day-body">
+                            <p class="event-time"><i class="fa-regular fa-clock"></i> 20:00 - Open End</p>
+                            <h4 class="event-title">Spieleabend & Kino</h4>
+                            <p class="event-desc">Wir treffen uns außerhalb von Star Stable im Discord für Gartic Phone, Among Us oder Film-Stream.</p>
+                            <span class="event-badge badge-social">Freizeit</span>
+                        </div>
+                    </div>
+
+                    <!-- Samstag -->
+                    <div class="calendar-day-card glass-card" data-category="training">
+                        <div class="day-header">
+                            <span class="day-name">Samstag</span>
+                            <span class="day-status status-active">Event</span>
+                        </div>
+                        <div class="day-body">
+                            <p class="event-time"><i class="fa-regular fa-clock"></i> 16:00 - 18:00 Uhr</p>
+                            <h4 class="event-title">Großes Clubtreffen</h4>
+                            <p class="event-desc">Wöchentliches Haupt-Meeting mit Dressur-Aufmarsch, Beförderungen und Fotoshooting.</p>
+                            <span class="event-badge badge-training">Pflichttreffen</span>
+                        </div>
+                    </div>
+
+                    <!-- Sonntag -->
+                    <div class="calendar-day-card glass-card" data-category="fun">
+                        <div class="day-header">
+                            <span class="day-name">Sonntag</span>
+                            <span class="day-status status-active">Event</span>
+                        </div>
+                        <div class="day-body">
+                            <p class="event-time"><i class="fa-regular fa-clock"></i> 15:00 - 17:00 Uhr</p>
+                            <h4 class="event-title">Sonntags-Ausritt</h4>
+                            <p class="event-desc">Gemütlicher Ausritt im gemütlichen Schritt durch Valedale oder das Goldblatt-Tal.</p>
+                            <span class="event-badge badge-fun">Ausflug</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="team-section section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Unser Team</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Die kreativen Köpfe und Wächter unseres Drachenhorts.</p>
+                </div>
+
+                <div class="team-grid">
+                    <!-- Owner -->
+                    <div class="team-card glass-card">
+                        <div class="card-glow"></div>
+                        <div class="team-avatar">
+                            <i class="fa-solid fa-crown rank-icon owner"></i>
+                            <div class="avatar-placeholder"><i class="fa-solid fa-person-riding"></i></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3>Arya Dragonheart</h3>
+                            <p class="team-role">Club-Besitzerin</p>
+                            <p class="team-quote">„Drachen fliegen nicht mit der Masse, sie führen sie an.“</p>
+                            <div class="team-socials">
+                                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leader 1 -->
+                    <div class="team-card glass-card">
+                        <div class="card-glow"></div>
+                        <div class="team-avatar">
+                            <i class="fa-solid fa-gem rank-icon leader"></i>
+                            <div class="avatar-placeholder"><i class="fa-solid fa-person-riding"></i></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3>Elena Goldcrest</h3>
+                            <p class="team-role">Club-Leitung</p>
+                            <p class="team-quote">„Zusammenarbeit ist die Flamme, die uns alle wärmt.“</p>
+                            <div class="team-socials">
+                                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leader 2 / Trainer -->
+                    <div class="team-card glass-card">
+                        <div class="card-glow"></div>
+                        <div class="team-avatar">
+                            <i class="fa-solid fa-wand-magic-sparkles rank-icon trainer"></i>
+                            <div class="avatar-placeholder"><i class="fa-solid fa-person-riding"></i></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3>Luna Firestorm</h3>
+                            <p class="team-role">Reitlehrerin</p>
+                            <p class="team-quote">„Ein sauberer Zirkel ist wie ein gezähmter Feuerdrache.“</p>
+                            <div class="team-socials">
+                                <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center team-footer-note">
+                    <p class="text-muted">...und all unsere treuen Drachenreiter, die unseren Club jeden Tag zum Strahlen bringen! 🌟</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Form Section -->
+        <section id="join" class="join-section section">
+            <div class="container container-narrow">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Werde Teil der Legende</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Fülle unser feuriges Bewerbungsformular aus und fliege schon bald an unserer Seite.</p>
+                </div>
+
+                <div class="join-form-container glass-card">
+                    <!-- Progress Bar -->
+                    <div class="form-progress">
+                        <div class="progress-line" id="progress-line"></div>
+                        <div class="progress-step active" data-step="1">
+                            <span class="step-num">1</span>
+                            <span class="step-label">Über Dich</span>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <span class="step-num">2</span>
+                            <span class="step-label">SSO-Profil</span>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <span class="step-num">3</span>
+                            <span class="step-label">Motivation</span>
+                        </div>
+                    </div>
+
+                    <!-- The Form -->
+                    <form id="apply-form" novalidate>
+                        <!-- STEP 1 -->
+                        <div class="form-step-content active" id="step-1">
+                            <h3 class="step-title"><i class="fa-solid fa-user-tag form-icon-title"></i> Erzähl uns von dir</h3>
+                            <p class="step-subtitle">Lass uns zuerst ein paar grundlegende Dinge über dich erfahren.</p>
+                            
+                            <div class="form-group">
+                                <label for="fullname">Dein echter Name (oder Spitzname) <span class="required">*</span></label>
+                                <input type="text" id="fullname" name="fullname" class="form-input" placeholder="z.B. Luisa" required>
+                                <span class="error-msg">Bitte gib deinen Namen ein.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="age">Dein Alter <span class="required">*</span></label>
+                                <input type="number" id="age" name="age" class="form-input" min="10" max="99" placeholder="z.B. 16" required>
+                                <span class="error-msg">Bitte gib ein gültiges Alter ein (mindestens 10 Jahre).</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="discord">Discord-Tag (Name#0000 oder Benutzername) <span class="required">*</span></label>
+                                <input type="text" id="discord" name="discord" class="form-input" placeholder="z.B. luisa_sso" required>
+                                <span class="error-msg">Bitte gib deinen Discord-Tag an. Das ist unsere Hauptplattform!</span>
+                            </div>
+
+                            <div class="form-actions-right">
+                                <button type="button" class="btn btn-primary btn-next">Weiter <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2 -->
+                        <div class="form-step-content" id="step-2">
+                            <h3 class="step-title"><i class="fa-solid fa-horse-head form-icon-title"></i> Dein Star Stable Leben</h3>
+                            <p class="step-subtitle">Welche Erfolge hast du in Jorvik schon gesammelt?</p>
+                            
+                            <div class="form-group">
+                                <label for="sso-name">Name deines SSO Charakters <span class="required">*</span></label>
+                                <input type="text" id="sso-name" name="sso_name" class="form-input" placeholder="z.B. Lucy Dragonheart" required>
+                                <span class="error-msg">Bitte gib den vollen Namen deines Avatars ein.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sso-level">Dein Charakter-Level <span class="required">*</span></label>
+                                <select id="sso-level" name="sso_level" class="form-input" required>
+                                    <option value="" disabled selected>Wähle dein Level...</option>
+                                    <option value="1-10">Level 1 - 10</option>
+                                    <option value="11-15">Level 11 - 15</option>
+                                    <option value="16-19">Level 16 - 19</option>
+                                    <option value="20-22">Level 20 - 22</option>
+                                    <option value="23+">Level 23 oder höher</option>
+                                </select>
+                                <span class="error-msg">Bitte wähle dein Charakterlevel aus.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sso-horse">Besitzt du das Club-Pferd (Friese Gen 3)? <span class="required">*</span></label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="has_horse" value="yes" required>
+                                        <span class="custom-radio"></span> Ja, bereits im Stall!
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="has_horse" value="soon" required>
+                                        <span class="custom-radio"></span> Nein, kaufe es mir bald.
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="has_horse" value="no" required>
+                                        <span class="custom-radio"></span> Nein, brauche noch Star Coins.
+                                    </label>
+                                </div>
+                                <span class="error-msg" style="display: block; margin-top: 5px;">Bitte wähle eine Option aus.</span>
+                            </div>
+
+                            <div class="form-actions-between">
+                                <button type="button" class="btn btn-secondary btn-prev"><i class="fa-solid fa-arrow-left"></i> Zurück</button>
+                                <button type="button" class="btn btn-primary btn-next">Weiter <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3 -->
+                        <div class="form-step-content" id="step-3">
+                            <h3 class="step-title"><i class="fa-solid fa-fire-flame-simple form-icon-title"></i> Deine Drachenseele</h3>
+                            <p class="step-subtitle">Überzeuge uns! Warum passt du perfekt in das Dragon Horses Team?</p>
+                            
+                            <div class="form-group">
+                                <label for="motivation">Warum möchtest du unserem Club beitreten? <span class="required">*</span></label>
+                                <textarea id="motivation" name="motivation" class="form-input form-textarea" rows="4" placeholder="Erzähl uns etwas über dich und deine Motivation. Was wünschst du dir vom Club?" required></textarea>
+                                <span class="error-msg">Bitte schreibe uns ein paar Sätze. Wir möchten dich kennenlernen!</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="accept-rules" name="accept_rules" required>
+                                    <span class="custom-checkbox"></span> Ich akzeptiere die Clubregeln (Freundlicher Umgang, keine Beleidigungen, Discord-Aktivität). <span class="required">*</span>
+                                </label>
+                                <span class="error-msg" style="display: block; margin-top: 5px;">Du musst unsere Clubregeln akzeptieren, um beizutreten.</span>
+                            </div>
+
+                            <div class="form-actions-between">
+                                <button type="button" class="btn btn-secondary btn-prev"><i class="fa-solid fa-arrow-left"></i> Zurück</button>
+                                <button type="submit" class="btn btn-primary" id="btn-submit">Bewerbung abschicken <i class="fa-solid fa-paper-plane btn-icon"></i></button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Success Message (Hidden by Default) -->
+                    <div class="form-success-message" id="success-message" style="display: none;">
+                        <div class="success-icon-container">
+                            <i class="fa-solid fa-dragon dragon-flying"></i>
+                            <div class="pulse-ring"></div>
+                        </div>
+                        <h3>Deine Bewerbung fliegt!</h3>
+                        <p class="success-tagline">Vielen Dank für deine Bewerbung beim <strong>Dragon Horses Team</strong>!</p>
+                        <p class="success-details">Wir haben deine Angaben sicher erhalten. Arya und Elena werden deine Bewerbung sorgfältig lesen. Wenn alles passt, kontaktieren wir dich innerhalb der nächsten <strong>48 Stunden</strong> auf Discord.</p>
+                        <div class="success-user-summary glass-card" id="user-summary">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                        <button type="button" class="btn btn-primary btn-lg" id="btn-success-close">Zurück zur Startseite</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span class="logo-icon"><i class="fa-solid fa-dragon"></i></span>
+                    <span class="logo-text">Dragon Horses <span class="accent-text">Team</span></span>
+                </a>
+                <p class="footer-desc">Wir reiten mit Stolz, kämpfen mit Loyalität und lachen als Familie. Gegründet 2026 auf dem Server Cape Coconut.</p>
+                <div class="footer-social-links">
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#hero">Startseite</a></li>
+                    <li><a href="#about">Über uns</a></li>
+                    <li><a href="#club-style">Club-Stil</a></li>
+                    <li><a href="#calendar">Wochenplan</a></li>
+                    <li><a href="#team">Unser Team</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>In-Game Kontakt</h4>
+                <p><i class="fa-regular fa-envelope footer-contact-icon"></i> Postfach: Arya Dragonheart</p>
+                <p><i class="fa-solid fa-compass footer-contact-icon"></i> Server: Cape Coconut</p>
+                <p><i class="fa-brands fa-discord footer-contact-icon"></i> Discord: dragonhorsesteam_sso</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p class="copyright">&copy; 2026 Dragon Horses Team. Alle Rechte vorbehalten.</p>
+                <p class="disclaimer"><strong>Disclaimer:</strong> Diese Webseite ist eine inoffizielle Fan-Webseite. Star Stable Online, alle Charaktere, Grafiken und Marken sind Eigentum der Star Stable Entertainment AB. Wir stehen in keinerlei offizieller Verbindung zu Star Stable.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="app.js"></script>
+</body>
+</html>
