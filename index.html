@@ -50,7 +50,12 @@
     <main>
         <!-- Hero Section -->
         <section id="hero" class="hero-section">
-            <div class="hero-bg" style="background-image: linear-gradient(to bottom, rgba(11, 11, 13, 0.4), rgba(11, 11, 13, 0.95)), url('assets/TitelBild.png');"></div>
+            <div class="hero-bg">
+                <video class="hero-video" autoplay loop muted playsinline poster="assets/TitelBild.png">
+                    <source src="assets/TitelAnimiert.mp4" type="video/mp4">
+                </video>
+                <div class="hero-video-overlay"></div>
+            </div>
             <div class="container hero-container">
                 <div class="hero-content">
                     <span class="hero-subtitle"><i class="fa-solid fa-fire-flame-curved icon-fire"></i> Star Stable Online Club</span>
