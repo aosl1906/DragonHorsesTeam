@@ -561,6 +561,123 @@ img {
     animation: scrollMouse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
+/* Video Audio Toggle Button */
+.video-audio-toggle {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    z-index: 10;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(22, 22, 28, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    color: var(--text-secondary);
+    transition: var(--transition-smooth);
+    padding: 0;
+    outline: none;
+}
+
+.video-audio-toggle:hover {
+    transform: scale(1.08);
+    border-color: rgba(255, 75, 43, 0.4);
+    box-shadow: 0 0 20px rgba(255, 75, 43, 0.35), 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    color: var(--text-primary);
+}
+
+.video-audio-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Sound Toggle Icon styling */
+.sound-icon {
+    font-size: 1.2rem;
+    z-index: 2;
+    transition: var(--transition-fast);
+}
+
+.video-audio-toggle.unmuted {
+    border-color: rgba(212, 175, 55, 0.4);
+    color: var(--accent-gold);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.25), 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.video-audio-toggle.unmuted:hover {
+    border-color: rgba(212, 175, 55, 0.8);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Sound Wave Animation */
+.sound-wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: flex-end;
+    gap: 2.5px;
+    width: 26px;
+    height: 24px;
+    pointer-events: none;
+    opacity: 0.15;
+    transition: var(--transition-smooth);
+    justify-content: center;
+}
+
+.video-audio-toggle.unmuted .sound-wave {
+    opacity: 0.45;
+}
+
+.sound-wave span {
+    display: block;
+    width: 2px;
+    height: 4px;
+    background: var(--accent-gold);
+    border-radius: 1px;
+    transition: height 0.2s ease;
+}
+
+/* Staggered animation when active */
+.video-audio-toggle.unmuted .sound-wave span {
+    animation: soundGlow 1.2s ease-in-out infinite alternate;
+}
+
+.video-audio-toggle.unmuted .sound-wave span:nth-child(1) {
+    animation-delay: 0.1s;
+    height: 12px;
+}
+
+.video-audio-toggle.unmuted .sound-wave span:nth-child(2) {
+    animation-delay: 0.4s;
+    height: 18px;
+}
+
+.video-audio-toggle.unmuted .sound-wave span:nth-child(3) {
+    animation-delay: 0.2s;
+    height: 14px;
+}
+
+.video-audio-toggle.unmuted .sound-wave span:nth-child(4) {
+    animation-delay: 0.5s;
+    height: 8px;
+}
+
+@keyframes soundGlow {
+    0% {
+        height: 4px;
+    }
+    100% {
+        height: 20px;
+    }
+}
+
 /* ==========================================================================
    ABOUT SECTION
    ========================================================================== */
@@ -743,6 +860,97 @@ img {
     padding: 6px 14px;
     border-radius: 4px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 6;
+}
+
+/* Horse Card Gallery Styling */
+.gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(10, 10, 12, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    font-size: 1rem;
+    display: none; /* hidden by default, shown when container has .has-gallery */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    z-index: 5;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    padding: 0;
+    outline: none;
+}
+
+.gallery-arrow:hover {
+    background: var(--accent-fire);
+    border-color: rgba(255, 75, 43, 0.5);
+    box-shadow: 0 0 15px rgba(255, 75, 43, 0.5);
+    transform: translateY(-50%) scale(1.08);
+    color: #fff;
+}
+
+.gallery-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.prev-arrow {
+    left: 15px;
+}
+
+.next-arrow {
+    right: 15px;
+}
+
+#horse-gallery-container.has-gallery .gallery-arrow {
+    display: flex;
+}
+
+/* Indicators / Dots */
+.gallery-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none; /* hidden by default, shown when container has .has-gallery */
+    gap: 8px;
+    background: rgba(10, 10, 12, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 5;
+}
+
+#horse-gallery-container.has-gallery .gallery-indicators {
+    display: flex;
+}
+
+.gallery-indicators .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.gallery-indicators .dot:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.gallery-indicators .dot.active {
+    background: var(--accent-gold);
+    box-shadow: 0 0 8px var(--accent-gold);
+    width: 18px;
+    border-radius: 4px;
 }
 
 .style-card-content {
@@ -1127,6 +1335,22 @@ img {
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), inset 0 0 15px rgba(0,0,0,0.5);
 }
 
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: var(--transition-smooth);
+}
+
+.team-card:hover .avatar-img {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    transform: scale(1.05);
+}
+
 /* Rank Icons */
 .rank-icon {
     position: absolute;
@@ -1221,390 +1445,6 @@ img {
 
 .team-footer-note p {
     font-size: 1.05rem;
-}
-
-/* ==========================================================================
-   JOIN US FORM SECTION
-   ========================================================================== */
-
-.join-form-container {
-    padding: 50px;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Multi-Step progress bar */
-.form-progress {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    margin-bottom: 50px;
-    z-index: 2;
-}
-
-.progress-line {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.08);
-    width: 100%;
-    z-index: -1;
-    border-radius: 2px;
-}
-
-.progress-line::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background: var(--accent-fire);
-    width: var(--width, 0%);
-    transition: var(--transition-smooth);
-    border-radius: 2px;
-    box-shadow: 0 0 10px rgba(255, 75, 43, 0.5);
-}
-
-.progress-step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    cursor: default;
-}
-
-.step-num {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: var(--bg-secondary);
-    border: 2px solid rgba(255,255,255,0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    transition: var(--transition-smooth);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.step-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-secondary);
-    transition: var(--transition-smooth);
-}
-
-.progress-step.active .step-num {
-    border-color: var(--accent-fire-solid);
-    background: var(--accent-fire-solid);
-    color: #fff;
-    box-shadow: 0 0 15px rgba(255, 75, 43, 0.4);
-}
-
-.progress-step.active .step-label {
-    color: var(--text-primary);
-}
-
-.progress-step.completed .step-num {
-    border-color: var(--accent-gold);
-    background: rgba(212, 175, 55, 0.1);
-    color: var(--accent-gold);
-}
-
-.progress-step.completed .step-label {
-    color: var(--accent-gold);
-}
-
-/* Steps contents */
-.form-step-content {
-    display: none;
-    animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.form-step-content.active {
-    display: block;
-}
-
-.step-title {
-    font-size: 1.45rem;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.form-icon-title {
-    color: var(--accent-gold);
-}
-
-.step-subtitle {
-    font-size: 0.95rem;
-    margin-bottom: 30px;
-}
-
-/* Fields */
-.form-group {
-    margin-bottom: 24px;
-}
-
-.form-group label {
-    display: block;
-    font-weight: 500;
-    font-size: 0.9rem;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-}
-
-.required {
-    color: var(--accent-fire-solid);
-    margin-left: 2px;
-}
-
-.form-input {
-    width: 100%;
-    background: rgba(10, 10, 12, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    padding: 14px 18px;
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    color: var(--text-primary);
-    transition: var(--transition-fast);
-}
-
-.form-input:focus {
-    outline: none;
-    border-color: rgba(255, 75, 43, 0.5);
-    box-shadow: 0 0 10px rgba(255, 75, 43, 0.15);
-    background: rgba(10, 10, 12, 0.8);
-}
-
-.form-input::placeholder {
-    color: var(--text-muted);
-}
-
-.form-textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* Custom Checkbox & Radio */
-.checkbox-label, .radio-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    cursor: pointer;
-    user-select: none;
-}
-
-.radio-label {
-    margin-bottom: 12px;
-}
-
-.radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.checkbox-label input, .radio-label input {
-    display: none;
-}
-
-.custom-checkbox, .custom-radio {
-    width: 22px;
-    height: 22px;
-    border: 1px solid rgba(255,255,255,0.15);
-    background: rgba(10, 10, 12, 0.6);
-    display: inline-block;
-    transition: var(--transition-fast);
-}
-
-.custom-checkbox {
-    border-radius: 6px;
-    position: relative;
-}
-
-.custom-radio {
-    border-radius: 50%;
-    position: relative;
-}
-
-.checkbox-label input:checked + .custom-checkbox {
-    background: var(--accent-fire-solid);
-    border-color: var(--accent-fire-solid);
-}
-
-.checkbox-label input:checked + .custom-checkbox::after {
-    content: '\f00c';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    color: #fff;
-    font-size: 0.75rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.radio-label input:checked + .custom-radio {
-    border-color: var(--accent-fire-solid);
-}
-
-.radio-label input:checked + .custom-radio::after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    background: var(--accent-fire-solid);
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 8px var(--accent-fire-solid);
-}
-
-/* Errors states */
-.form-group.has-error .form-input {
-    border-color: var(--accent-fire-solid);
-    background: rgba(255, 75, 43, 0.03);
-}
-
-.error-msg {
-    display: none;
-    color: var(--accent-fire-solid);
-    font-size: 0.8rem;
-    margin-top: 6px;
-    font-weight: 500;
-}
-
-.form-group.has-error .error-msg {
-    display: block;
-}
-
-/* Actions layout */
-.form-actions-right {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 35px;
-}
-
-.form-actions-between {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 35px;
-}
-
-/* Success Message styles */
-.form-success-message {
-    text-align: center;
-    padding: 20px 0;
-    animation: zoomIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.success-icon-container {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 30px auto;
-}
-
-.dragon-flying {
-    font-size: 3.5rem;
-    color: var(--accent-gold);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    animation: float 2.5s ease-in-out infinite;
-    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
-}
-
-.pulse-ring {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px dashed rgba(212, 175, 55, 0.3);
-    z-index: 1;
-    animation: rotateRing 15s linear infinite;
-}
-
-.form-success-message h3 {
-    font-size: 2.2rem;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    background: var(--accent-fire);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.success-tagline {
-    font-size: 1.15rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 20px;
-}
-
-.success-details {
-    max-width: 520px;
-    margin: 0 auto 35px auto;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-.success-user-summary {
-    max-width: 480px;
-    margin: 0 auto 40px auto;
-    padding: 24px;
-    text-align: left;
-    background: rgba(10, 10, 12, 0.5);
-    border-radius: 12px;
-}
-
-.success-user-summary h4 {
-    font-size: 1rem;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    color: var(--accent-gold);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    padding-bottom: 6px;
-}
-
-.summary-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-
-.summary-item {
-    font-size: 0.85rem;
-}
-
-.summary-item span {
-    display: block;
-}
-
-.summary-label {
-    color: var(--text-muted);
-}
-
-.summary-value {
-    font-weight: 600;
-    color: var(--text-primary);
 }
 
 /* ==========================================================================
@@ -1894,17 +1734,21 @@ img {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    .join-form-container {
-        padding: 30px 20px;
+    .video-audio-toggle {
+        bottom: 24px;
+        right: 24px;
+        width: 46px;
+        height: 46px;
     }
-    .form-progress {
-        margin-bottom: 40px;
+    
+    .sound-wave {
+        width: 20px;
+        height: 18px;
+        gap: 1.5px;
     }
-    .step-label {
-        display: none;
-    }
-    .progress-step {
-        gap: 0;
+    
+    .sound-icon {
+        font-size: 1rem;
     }
 }
 
@@ -1939,8 +1783,5 @@ img {
     }
     .style-card-img-container {
         height: 240px;
-    }
-    .summary-grid {
-        grid-template-columns: 1fr;
     }
 }

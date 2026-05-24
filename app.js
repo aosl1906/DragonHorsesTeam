@@ -232,17 +232,143 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
                 
-                // Change card image if data-image is provided
+                // Change card image if data-image is provided with a smooth fade/scale transition
                 const newImg = btn.getAttribute('data-image');
                 if (newImg) {
                     const cardImg = container.querySelector('.style-card-img');
                     if (cardImg) {
-                        cardImg.src = newImg;
+                        cardImg.style.opacity = '0.3';
+                        cardImg.style.transform = 'scale(0.98)';
+                        
+                        setTimeout(() => {
+                            cardImg.src = newImg;
+                            
+                            setTimeout(() => {
+                                cardImg.style.opacity = '1';
+                                cardImg.style.transform = 'scale(1)';
+                            }, 50);
+                        }, 150);
                     }
                 }
             });
         });
     });
+    
+    // ==========================================================================
+    // 4b. SPECIFIC HORSE CARD GALLERY & SLIDER ENGINE
+    // ==========================================================================
+    const horseGalleryContainer = document.getElementById('horse-gallery-container');
+    const horseDisplayImg = document.getElementById('horse-display-img');
+    const galleryPrevBtn = document.getElementById('gallery-prev-btn');
+    const galleryNextBtn = document.getElementById('gallery-next-btn');
+    const galleryDotsContainer = document.getElementById('gallery-dots');
+    
+    // Horse Images Mapping
+    const horseImages = {
+        'sr-horse': ['assets/Pferd_SR_1.JPG'],
+        'nsr-horse': ['assets/Pferd_nSR_1.png', 'assets/Pferd_nSR_2.png']
+    };
+    
+    let currentHorseTab = 'sr-horse';
+    let currentHorseImgIndex = 0;
+    
+    function updateHorseGallery() {
+        const images = horseImages[currentHorseTab];
+        
+        // Add premium fade out effect
+        if (horseDisplayImg) {
+            horseDisplayImg.style.opacity = '0.3';
+            horseDisplayImg.style.transform = 'scale(0.98)';
+        }
+        
+        setTimeout(() => {
+            // Update source
+            if (horseDisplayImg) {
+                horseDisplayImg.src = images[currentHorseImgIndex];
+            }
+            
+            // Fade in and scale back up
+            setTimeout(() => {
+                if (horseDisplayImg) {
+                    horseDisplayImg.style.opacity = '1';
+                    horseDisplayImg.style.transform = 'scale(1)';
+                }
+            }, 50);
+        }, 150);
+        
+        // Handle gallery layout controls depending on number of images
+        if (images.length > 1) {
+            if (horseGalleryContainer) {
+                horseGalleryContainer.classList.add('has-gallery');
+            }
+            
+            // Re-render dots
+            if (galleryDotsContainer) {
+                galleryDotsContainer.innerHTML = images.map((_, index) => 
+                    `<span class="dot ${index === currentHorseImgIndex ? 'active' : ''}" data-index="${index}"></span>`
+                ).join('');
+                
+                // Add click events to new dots
+                const dots = galleryDotsContainer.querySelectorAll('.dot');
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        const targetIndex = parseInt(dot.getAttribute('data-index'));
+                        if (targetIndex !== currentHorseImgIndex) {
+                            currentHorseImgIndex = targetIndex;
+                            updateHorseGallery();
+                        }
+                    });
+                });
+            }
+        } else {
+            if (horseGalleryContainer) {
+                horseGalleryContainer.classList.remove('has-gallery');
+            }
+        }
+    }
+    
+    // Add specific listener for horse card tab buttons to override or run alongside the generic tabs
+    const horseCard = document.querySelector('.horse-card');
+    if (horseCard) {
+        const horseTabBtns = horseCard.querySelectorAll('.tab-btn');
+        horseTabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const selectedTab = btn.getAttribute('data-tab');
+                if (selectedTab !== currentHorseTab) {
+                    currentHorseTab = selectedTab;
+                    currentHorseImgIndex = 0;
+                    updateHorseGallery();
+                }
+            });
+        });
+    }
+    
+    // Prev / Next button listeners
+    if (galleryPrevBtn) {
+        galleryPrevBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent card click triggers
+            const images = horseImages[currentHorseTab];
+            if (images.length > 1) {
+                currentHorseImgIndex = (currentHorseImgIndex - 1 + images.length) % images.length;
+                updateHorseGallery();
+            }
+        });
+    }
+    
+    if (galleryNextBtn) {
+        galleryNextBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent card click triggers
+            const images = horseImages[currentHorseTab];
+            if (images.length > 1) {
+                currentHorseImgIndex = (currentHorseImgIndex + 1) % images.length;
+                updateHorseGallery();
+            }
+        });
+    }
+    
+    // Initial update to ensure correct files are loaded on startup
+    updateHorseGallery();
+    
     
     
     // ==========================================================================
@@ -288,7 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================================================
     // 6. SCROLL REVEAL ANIMATIONS (Intersection Observer)
     // ==========================================================================
-    const revealItems = document.querySelectorAll('.about-info-card, .about-facts-card, .about-activities-card, .style-card, .calendar-day-card, .team-card, .join-form-container');
+    const revealItems = document.querySelectorAll('.about-info-card, .about-facts-card, .about-activities-card, .style-card, .calendar-day-card, .team-card');
     
     revealItems.forEach(item => {
         item.classList.add('reveal-item');
@@ -314,256 +440,42 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(item);
     });
     
-    
+
+
     // ==========================================================================
-    // 7. MULTI-STEP APPLICATIONS FORM VALIDATION & LOGIC
+    // 8. BACKGROUND VIDEO AUDIO TOGGLE
     // ==========================================================================
-    const form = document.getElementById('apply-form');
-    const formSteps = document.querySelectorAll('.form-step-content');
-    const nextBtns = document.querySelectorAll('.btn-next');
-    const prevBtns = document.querySelectorAll('.btn-prev');
-    const progressSteps = document.querySelectorAll('.progress-step');
-    const progressLine = document.getElementById('progress-line');
+    const heroVideo = document.querySelector('.hero-video');
+    const audioToggle = document.querySelector('.video-audio-toggle');
+    const soundIcon = audioToggle?.querySelector('.sound-icon');
     
-    const successMessage = document.getElementById('success-message');
-    const userSummary = document.getElementById('user-summary');
-    const closeSuccessBtn = document.getElementById('btn-success-close');
-    
-    let currentStep = 1;
-    
-    // Update progress bar UI
-    function updateProgress() {
-        // Steps styling
-        progressSteps.forEach((step, idx) => {
-            const stepNum = idx + 1;
-            step.classList.remove('active', 'completed');
+    if (heroVideo && audioToggle) {
+        audioToggle.addEventListener('click', () => {
+            // Toggle muted status
+            heroVideo.muted = !heroVideo.muted;
             
-            if (stepNum === currentStep) {
-                step.classList.add('active');
-            } else if (stepNum < currentStep) {
-                step.classList.add('completed');
-            }
-        });
-        
-        // Progress line scaling
-        const percentage = ((currentStep - 1) / (progressSteps.length - 1)) * 100;
-        progressLine.style.setProperty('--progress-width', `${percentage}%`);
-        
-        // CSS hack for line fill: set width on a pseudoclass via JS variable or direct stylesheet edit
-        // We will directly style the width of the progress-line's ::before using JS style variables:
-        const progressLineBefore = document.styleSheets[0];
-        // Alternatively, an easier way is to set custom CSS property
-        progressLine.style.setProperty('--width', `${percentage}%`);
-    }
-    
-    // Get all input fields in a specific step
-    function getFieldsInStep(stepNum) {
-        const stepContainer = document.getElementById(`step-${stepNum}`);
-        return stepContainer.querySelectorAll('input[required], select[required], textarea[required]');
-    }
-    
-    // Validate a specific input field
-    function validateField(field) {
-        const group = field.closest('.form-group') || field.parentElement;
-        let isValid = true;
-        
-        if (field.type === 'checkbox') {
-            isValid = field.checked;
-        } else if (field.type === 'radio') {
-            const radioGroup = field.closest('.form-group');
-            const radios = radioGroup.querySelectorAll('input[type="radio"]');
-            isValid = Array.from(radios).some(r => r.checked);
-        } else {
-            isValid = field.value.trim() !== '';
-            
-            // Age validation rule
-            if (field.id === 'age' && isValid) {
-                const val = parseInt(field.value);
-                isValid = !isNaN(val) && val >= 10 && val <= 99;
-            }
-        }
-        
-        if (isValid) {
-            group.classList.remove('has-error');
-        } else {
-            group.classList.add('has-error');
-        }
-        
-        return isValid;
-    }
-    
-    // Validate all fields in the current step
-    function validateCurrentStep() {
-        const fields = getFieldsInStep(currentStep);
-        let stepIsValid = true;
-        
-        fields.forEach(field => {
-            const fieldIsValid = validateField(field);
-            if (!fieldIsValid) {
-                stepIsValid = false;
-            }
-        });
-        
-        return stepIsValid;
-    }
-    
-    // Listen to real-time input changes to remove error stylings dynamically
-    form.querySelectorAll('input, select, textarea').forEach(input => {
-        input.addEventListener('input', () => {
-            if (input.type !== 'radio' && input.type !== 'checkbox') {
-                const group = input.closest('.form-group');
-                if (input.value.trim() !== '') {
-                    group.classList.remove('has-error');
+            if (heroVideo.muted) {
+                // Muted state
+                audioToggle.classList.remove('unmuted');
+                audioToggle.setAttribute('aria-label', 'Ton einschalten');
+                audioToggle.setAttribute('title', 'Ton einschalten');
+                if (soundIcon) {
+                    soundIcon.className = 'fa-solid fa-volume-xmark sound-icon';
                 }
-            }
-        });
-        
-        input.addEventListener('change', () => {
-            const group = input.closest('.form-group');
-            validateField(input);
-        });
-    });
-    
-    // Next buttons handler
-    nextBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (validateCurrentStep()) {
-                const currentContainer = document.getElementById(`step-${currentStep}`);
-                const nextContainer = document.getElementById(`step-${currentStep + 1}`);
-                
-                // Smooth transition: Slide out current
-                currentContainer.style.animation = 'slideOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards';
-                
-                setTimeout(() => {
-                    currentContainer.classList.remove('active');
-                    nextContainer.classList.add('active');
-                    nextContainer.style.animation = 'slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards';
-                    currentStep++;
-                    updateProgress();
-                }, 280);
             } else {
-                // Focus on first error element
-                const firstError = document.querySelector('.form-group.has-error input, .form-group.has-error select, .form-group.has-error textarea');
-                if (firstError) firstError.focus();
+                // Unmuted state
+                audioToggle.classList.add('unmuted');
+                audioToggle.setAttribute('aria-label', 'Ton stummschalten');
+                audioToggle.setAttribute('title', 'Ton stummschalten');
+                if (soundIcon) {
+                    soundIcon.className = 'fa-solid fa-volume-high sound-icon';
+                }
+                
+                // Try playing in case browser paused it
+                heroVideo.play().catch(err => {
+                    console.log("Audio playback was blocked or failed:", err);
+                });
             }
         });
-    });
-    
-    // Prev buttons handler
-    prevBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const currentContainer = document.getElementById(`step-${currentStep}`);
-            const prevContainer = document.getElementById(`step-${currentStep - 1}`);
-            
-            // Slide out reverse
-            currentContainer.style.animation = 'slideOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) reverse';
-            
-            setTimeout(() => {
-                currentContainer.classList.remove('active');
-                prevContainer.classList.add('active');
-                prevContainer.style.animation = 'slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) reverse';
-                currentStep--;
-                updateProgress();
-            }, 280);
-        });
-    });
-    
-    // Submit Form Handler
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        if (validateCurrentStep()) {
-            // Gathering Form Information
-            const fullName = document.getElementById('fullname').value;
-            const age = document.getElementById('age').value;
-            const discord = document.getElementById('discord').value;
-            const ssoName = document.getElementById('sso-name').value;
-            const ssoLevel = document.getElementById('sso-level').value;
-            const hasHorseVal = form.querySelector('input[name="has_horse"]:checked').value;
-            
-            let hasHorseText = "Ja";
-            if (hasHorseVal === 'soon') hasHorseText = "Demnächst";
-            if (hasHorseVal === 'no') hasHorseText = "Nein (braucht Star Coins)";
-            
-            // Populating visual summary
-            userSummary.innerHTML = `
-                <h4>Deine Bewerbungsdaten</h4>
-                <div class="summary-grid">
-                    <div class="summary-item">
-                        <span class="summary-label">SSO-Name:</span>
-                        <span class="summary-value">${ssoName}</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Charakterlevel:</span>
-                        <span class="summary-value">${ssoLevel}</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Discord Tag:</span>
-                        <span class="summary-value">${discord}</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Alter / RL-Name:</span>
-                        <span class="summary-value">${age} Jahre (${fullName})</span>
-                    </div>
-                    <div class="summary-item" style="grid-column: span 2;">
-                        <span class="summary-label">Club-Pferd vorhanden?</span>
-                        <span class="summary-value">${hasHorseText}</span>
-                    </div>
-                </div>
-            `;
-            
-            // Get position of submit button for confetti/sparks explosion
-            const btnSubmit = document.getElementById('btn-submit');
-            const rect = btnSubmit.getBoundingClientRect();
-            const posX = rect.left + rect.width / 2;
-            const posY = rect.top + rect.height / 2;
-            
-            // Trigger Particle Explosion!
-            triggerSparkBurst(posX, posY);
-            
-            // Hide Form & show Success Screen
-            form.style.display = 'none';
-            successMessage.style.display = 'block';
-            
-            // Set all progress steps to completed
-            progressSteps.forEach(step => {
-                step.classList.remove('active');
-                step.classList.add('completed');
-            });
-            progressLine.style.setProperty('--width', '100%');
-            
-            // Stagger multiple explosions around the screen for extra WoW factor!
-            setTimeout(() => triggerSparkBurst(canvas.width / 4, canvas.height / 3), 400);
-            setTimeout(() => triggerSparkBurst(canvas.width * 3/4, canvas.height / 3), 700);
-            setTimeout(() => triggerSparkBurst(canvas.width / 2, canvas.height * 2/3), 1000);
-            
-            // Scroll smoothly to form section top so applicant sees success message
-            document.getElementById('join').scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-    
-    // Close / Reset Success Button
-    closeSuccessBtn.addEventListener('click', () => {
-        // Reset form inputs
-        form.reset();
-        
-        // Remove error stylings
-        form.querySelectorAll('.form-group').forEach(group => {
-            group.classList.remove('has-error');
-        });
-        
-        // Return to step 1
-        currentStep = 1;
-        formSteps.forEach(step => step.classList.remove('active'));
-        document.getElementById('step-1').classList.add('active');
-        
-        // Show form & Hide success
-        form.style.display = 'block';
-        successMessage.style.display = 'none';
-        
-        updateProgress();
-        
-        // Scroll to hero
-        document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
-    });
+    }
 });

@@ -37,7 +37,6 @@
                     <li><a href="#club-style" class="nav-link">Pferd & Uniform</a></li>
                     <li><a href="#calendar" class="nav-link">Wochenplan</a></li>
                     <li><a href="#team" class="nav-link">Unser Team</a></li>
-                    <li><a href="#join" class="btn btn-primary btn-sm">Jetzt bewerben</a></li>
                 </ul>
             </nav>
             
@@ -56,6 +55,17 @@
                 </video>
                 <div class="hero-video-overlay"></div>
             </div>
+            
+            <!-- Video Audio Toggle Button -->
+            <button class="video-audio-toggle" aria-label="Ton einschalten" title="Ton einschalten">
+                <div class="sound-wave" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <i class="fa-solid fa-volume-xmark sound-icon"></i>
+            </button>
             <div class="container hero-container">
                 <div class="hero-content">
                     <span class="hero-subtitle"><i class="fa-solid fa-fire-flame-curved icon-fire"></i> Star Stable Online Club</span>
@@ -63,7 +73,7 @@
                     <p class="hero-tagline">Drachen lassen sich nicht zähmen.</p>
                     <p class="hero-description">Wir sind mehr als nur ein Club. Wir sind eine Familie auf stolzen Hufen, vereint durch die Magie Jorviks und die Stärke des Drachen. Bist du bereit, mit uns zu fliegen?</p>
                     <div class="hero-actions">
-                        <a href="#join" class="btn btn-primary btn-lg">Tritt uns bei <i class="fa-solid fa-chevron-right btn-icon"></i></a>
+                        <a href="#contact" class="btn btn-primary btn-lg">Kontakt <i class="fa-solid fa-chevron-right btn-icon"></i></a>
                         <a href="#about" class="btn btn-secondary btn-lg">Mehr erfahren</a>
                     </div>
                 </div>
@@ -169,14 +179,28 @@
                 <div class="style-grid">
                     <!-- Left: Club Horse Card -->
                     <div class="style-card horse-card glass-card">
-                        <div class="style-card-img-container">
-                            <img src="assets/club_horse_star.png" alt="Offizielles Club-Pferd" class="style-card-img">
+                        <div class="style-card-img-container" id="horse-gallery-container">
+                            <img src="assets/Pferd_SR_1.JPG" alt="Offizielles Club-Pferd" class="style-card-img" id="horse-display-img">
                             <div class="style-badge">Club-Pferd</div>
+                            
+                            <!-- Gallery navigation arrows -->
+                            <button type="button" class="gallery-arrow prev-arrow" aria-label="Vorheriges Bild" id="gallery-prev-btn">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button type="button" class="gallery-arrow next-arrow" aria-label="Nächstes Bild" id="gallery-next-btn">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                            
+                            <!-- Dots/Indicator for the gallery -->
+                            <div class="gallery-indicators" id="gallery-dots">
+                                <span class="dot active" data-index="0"></span>
+                                <span class="dot" data-index="1"></span>
+                            </div>
                         </div>
                         <div class="style-card-content">
                             <div class="tabs-header">
-                                <button class="tab-btn active" data-tab="sr-horse" data-image="assets/club_horse_star.png"><i class="fa-solid fa-star"></i> Star Rider</button>
-                                <button class="tab-btn" data-tab="nsr-horse" data-image="assets/club_horse.png"><i class="fa-solid fa-horse"></i> Kein Star Rider</button>
+                                <button class="tab-btn active" data-tab="sr-horse"><i class="fa-solid fa-star"></i> Star Rider</button>
+                                <button class="tab-btn" data-tab="nsr-horse"><i class="fa-solid fa-horse"></i> Kein Star Rider</button>
                             </div>
                             
                             <div class="tab-content active" id="sr-horse-tab">
@@ -224,17 +248,17 @@
                     <!-- Right: Club Uniform Card with Tabs -->
                     <div class="style-card uniform-card glass-card">
                         <div class="style-card-img-container">
-                            <img src="assets/TitelBild.png" alt="Offizielle Club-Uniform" class="style-card-img">
+                            <img src="assets/Bild_Uniform_1.JPG" alt="Offizielle Club-Uniform" class="style-card-img">
                             <div class="style-badge">Club-Uniform</div>
                         </div>
                         <div class="style-card-content">
                             <div class="tabs-header">
-                                <button class="tab-btn active" data-tab="rider"><i class="fa-solid fa-person-riding"></i> Reiter</button>
-                                <button class="tab-btn" data-tab="horse"><i class="fa-solid fa-horse"></i> Pferdetack</button>
+                                <button class="tab-btn active" data-tab="rider" data-image="assets/Bild_Uniform_1.JPG"><i class="fa-solid fa-person-riding"></i> Reiter</button>
+                                <button class="tab-btn" data-tab="horse" data-image="assets/Bild_Uniform_1.JPG"><i class="fa-solid fa-horse"></i> Pferde Outfit</button>
                             </div>
                             
                             <div class="tab-content active" id="rider-tab">
-                                <h3>Der Dresscode des Reiters</h3>
+                                <h3>Das Outfit</h3>
                                 <p class="tab-desc">Elegant, praktisch und in unseren Clubfarben: Tiefschwarz, edles Crimson-Rot und schimmerndes Gold.</p>
                                 <ul class="uniform-list">
                                     <li>
@@ -261,7 +285,7 @@
                             </div>
 
                             <div class="tab-content" id="horse-tab">
-                                <h3>Die Rüstung des Pferdes</h3>
+                                <h3>Das Pferde Outfit</h3>
                                 <p class="tab-desc">Ausgestattet, um wie ein feuriger Drache durch jorviksche Winde zu reiten.</p>
                                 <ul class="uniform-list">
                                     <li>
@@ -413,60 +437,35 @@
                 <div class="section-header text-center">
                     <h2 class="section-title">Unser Team</h2>
                     <div class="section-divider"></div>
-                    <p class="section-subtitle">Die kreativen Köpfe und Wächter unseres Drachenhorts.</p>
-                </div>
-
-                <div class="team-grid">
-                    <!-- Owner -->
+                    <p class="section-subtitle">Die kreativen Köpfe<div class="team-grid">
+                    <!-- Owner / Sally Eastgirl -->
                     <div class="team-card glass-card">
                         <div class="card-glow"></div>
                         <div class="team-avatar">
                             <i class="fa-solid fa-crown rank-icon owner"></i>
-                            <div class="avatar-placeholder"><i class="fa-solid fa-person-riding"></i></div>
+                            <img src="assets/Person_S.JPG" alt="Sally Eastgirl" class="avatar-img">
                         </div>
                         <div class="team-card-content">
-                            <h3>Arya Dragonheart</h3>
-                            <p class="team-role">Club-Besitzerin</p>
+                            <h3>Sally Eastgirl</h3>
+                            <p class="team-role">Club-Besitzerin &amp; Springlehrerin</p>
                             <p class="team-quote">„Drachen fliegen nicht mit der Masse, sie führen sie an.“</p>
-                            <div class="team-socials">
-                                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                                <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                            </div>
                         </div>
                     </div>
-
-                    <!-- Leader 1 -->
+ 
+                    <!-- Leader / Jula Majorspoon -->
                     <div class="team-card glass-card">
                         <div class="card-glow"></div>
                         <div class="team-avatar">
                             <i class="fa-solid fa-gem rank-icon leader"></i>
-                            <div class="avatar-placeholder"><i class="fa-solid fa-person-riding"></i></div>
+                            <img src="assets/Person_J.JPG" alt="Jula Majorspoon" class="avatar-img">
                         </div>
                         <div class="team-card-content">
-                            <h3>Elena Goldcrest</h3>
-                            <p class="team-role">Club-Leitung</p>
+                            <h3>Jula Majorspoon</h3>
+                            <p class="team-role">Club-Leiterin &amp; Dressurlehrerin</p>
                             <p class="team-quote">„Zusammenarbeit ist die Flamme, die uns alle wärmt.“</p>
-                            <div class="team-socials">
-                                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                            </div>
                         </div>
                     </div>
-
-                    <!-- Leader 2 / Trainer -->
-                    <div class="team-card glass-card">
-                        <div class="card-glow"></div>
-                        <div class="team-avatar">
-                            <i class="fa-solid fa-wand-magic-sparkles rank-icon trainer"></i>
-                            <div class="avatar-placeholder"><i class="fa-solid fa-person-riding"></i></div>
-                        </div>
-                        <div class="team-card-content">
-                            <h3>Luna Firestorm</h3>
-                            <p class="team-role">Reitlehrerin</p>
-                            <p class="team-quote">„Ein sauberer Zirkel ist wie ein gezähmter Feuerdrache.“</p>
-                            <div class="team-socials">
-                                <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                            </div>
-                        </div>
+                </div>                </div>
                     </div>
                 </div>
                 
@@ -475,160 +474,10 @@
                 </div>
             </div>
         </section>
-
-        <!-- Join Form Section -->
-        <section id="join" class="join-section section">
-            <div class="container container-narrow">
-                <div class="section-header text-center">
-                    <h2 class="section-title">Werde Teil der Legende</h2>
-                    <div class="section-divider"></div>
-                    <p class="section-subtitle">Fülle unser feuriges Bewerbungsformular aus und fliege schon bald an unserer Seite.</p>
-                </div>
-
-                <div class="join-form-container glass-card">
-                    <!-- Progress Bar -->
-                    <div class="form-progress">
-                        <div class="progress-line" id="progress-line"></div>
-                        <div class="progress-step active" data-step="1">
-                            <span class="step-num">1</span>
-                            <span class="step-label">Über Dich</span>
-                        </div>
-                        <div class="progress-step" data-step="2">
-                            <span class="step-num">2</span>
-                            <span class="step-label">SSO-Profil</span>
-                        </div>
-                        <div class="progress-step" data-step="3">
-                            <span class="step-num">3</span>
-                            <span class="step-label">Motivation</span>
-                        </div>
-                    </div>
-
-                    <!-- The Form -->
-                    <form id="apply-form" novalidate>
-                        <!-- STEP 1 -->
-                        <div class="form-step-content active" id="step-1">
-                            <h3 class="step-title"><i class="fa-solid fa-user-tag form-icon-title"></i> Erzähl uns von dir</h3>
-                            <p class="step-subtitle">Lass uns zuerst ein paar grundlegende Dinge über dich erfahren.</p>
-                            
-                            <div class="form-group">
-                                <label for="fullname">Dein echter Name (oder Spitzname) <span class="required">*</span></label>
-                                <input type="text" id="fullname" name="fullname" class="form-input" placeholder="z.B. Luisa" required>
-                                <span class="error-msg">Bitte gib deinen Namen ein.</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="age">Dein Alter <span class="required">*</span></label>
-                                <input type="number" id="age" name="age" class="form-input" min="10" max="99" placeholder="z.B. 16" required>
-                                <span class="error-msg">Bitte gib ein gültiges Alter ein (mindestens 10 Jahre).</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="discord">Discord-Tag (Name#0000 oder Benutzername) <span class="required">*</span></label>
-                                <input type="text" id="discord" name="discord" class="form-input" placeholder="z.B. luisa_sso" required>
-                                <span class="error-msg">Bitte gib deinen Discord-Tag an. Das ist unsere Hauptplattform!</span>
-                            </div>
-
-                            <div class="form-actions-right">
-                                <button type="button" class="btn btn-primary btn-next">Weiter <i class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- STEP 2 -->
-                        <div class="form-step-content" id="step-2">
-                            <h3 class="step-title"><i class="fa-solid fa-horse-head form-icon-title"></i> Dein Star Stable Leben</h3>
-                            <p class="step-subtitle">Welche Erfolge hast du in Jorvik schon gesammelt?</p>
-                            
-                            <div class="form-group">
-                                <label for="sso-name">Name deines SSO Charakters <span class="required">*</span></label>
-                                <input type="text" id="sso-name" name="sso_name" class="form-input" placeholder="z.B. Lucy Dragonheart" required>
-                                <span class="error-msg">Bitte gib den vollen Namen deines Avatars ein.</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="sso-level">Dein Charakter-Level <span class="required">*</span></label>
-                                <select id="sso-level" name="sso_level" class="form-input" required>
-                                    <option value="" disabled selected>Wähle dein Level...</option>
-                                    <option value="1-10">Level 1 - 10</option>
-                                    <option value="11-15">Level 11 - 15</option>
-                                    <option value="16-19">Level 16 - 19</option>
-                                    <option value="20-22">Level 20 - 22</option>
-                                    <option value="23+">Level 23 oder höher</option>
-                                </select>
-                                <span class="error-msg">Bitte wähle dein Charakterlevel aus.</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="sso-horse">Besitzt du das Club-Pferd (Friese Gen 3)? <span class="required">*</span></label>
-                                <div class="radio-group">
-                                    <label class="radio-label">
-                                        <input type="radio" name="has_horse" value="yes" required>
-                                        <span class="custom-radio"></span> Ja, bereits im Stall!
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="has_horse" value="soon" required>
-                                        <span class="custom-radio"></span> Nein, kaufe es mir bald.
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="has_horse" value="no" required>
-                                        <span class="custom-radio"></span> Nein, brauche noch Star Coins.
-                                    </label>
-                                </div>
-                                <span class="error-msg" style="display: block; margin-top: 5px;">Bitte wähle eine Option aus.</span>
-                            </div>
-
-                            <div class="form-actions-between">
-                                <button type="button" class="btn btn-secondary btn-prev"><i class="fa-solid fa-arrow-left"></i> Zurück</button>
-                                <button type="button" class="btn btn-primary btn-next">Weiter <i class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- STEP 3 -->
-                        <div class="form-step-content" id="step-3">
-                            <h3 class="step-title"><i class="fa-solid fa-fire-flame-simple form-icon-title"></i> Deine Drachenseele</h3>
-                            <p class="step-subtitle">Überzeuge uns! Warum passt du perfekt in das Dragon Horses Team?</p>
-                            
-                            <div class="form-group">
-                                <label for="motivation">Warum möchtest du unserem Club beitreten? <span class="required">*</span></label>
-                                <textarea id="motivation" name="motivation" class="form-input form-textarea" rows="4" placeholder="Erzähl uns etwas über dich und deine Motivation. Was wünschst du dir vom Club?" required></textarea>
-                                <span class="error-msg">Bitte schreibe uns ein paar Sätze. Wir möchten dich kennenlernen!</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" id="accept-rules" name="accept_rules" required>
-                                    <span class="custom-checkbox"></span> Ich akzeptiere die Clubregeln (Freundlicher Umgang, keine Beleidigungen, Discord-Aktivität). <span class="required">*</span>
-                                </label>
-                                <span class="error-msg" style="display: block; margin-top: 5px;">Du musst unsere Clubregeln akzeptieren, um beizutreten.</span>
-                            </div>
-
-                            <div class="form-actions-between">
-                                <button type="button" class="btn btn-secondary btn-prev"><i class="fa-solid fa-arrow-left"></i> Zurück</button>
-                                <button type="submit" class="btn btn-primary" id="btn-submit">Bewerbung abschicken <i class="fa-solid fa-paper-plane btn-icon"></i></button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <!-- Success Message (Hidden by Default) -->
-                    <div class="form-success-message" id="success-message" style="display: none;">
-                        <div class="success-icon-container">
-                            <i class="fa-solid fa-dragon dragon-flying"></i>
-                            <div class="pulse-ring"></div>
-                        </div>
-                        <h3>Deine Bewerbung fliegt!</h3>
-                        <p class="success-tagline">Vielen Dank für deine Bewerbung beim <strong>Dragon Horses Team</strong>!</p>
-                        <p class="success-details">Wir haben deine Angaben sicher erhalten. Arya und Elena werden deine Bewerbung sorgfältig lesen. Wenn alles passt, kontaktieren wir dich innerhalb der nächsten <strong>48 Stunden</strong> auf Discord.</p>
-                        <div class="success-user-summary glass-card" id="user-summary">
-                            <!-- Populated dynamically via JS -->
-                        </div>
-                        <button type="button" class="btn btn-primary btn-lg" id="btn-success-close">Zurück zur Startseite</button>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="container footer-container">
             <div class="footer-brand">
                 <a href="#" class="logo">
